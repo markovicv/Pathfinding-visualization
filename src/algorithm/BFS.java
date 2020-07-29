@@ -4,17 +4,17 @@ import model.Constants;
 import model.Node;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
-import java.util.Stack;
 
-public class DFS extends PathFindingAlgo {
+public class BFS extends PathFindingAlgo{
 
     @Override
     public void start() {
-        dfs();
+        bfs();
 
     }
-    private void findPath(Map<Node,Node> parents, Node end){
+    private void findPath(Map<Node,Node> parents,Node end){
         Node tmpEnd = end;
         while(parents.containsKey(end)){
             end = parents.get(end);
@@ -26,28 +26,29 @@ public class DFS extends PathFindingAlgo {
         notifyObservers();
     }
 
-    private void dfs(){
-        Stack<Node> stack = new Stack<>();
-        Map<Node,Node>parents = new HashMap<>();
-        stack.push(start);
+    private void bfs(){
+        LinkedList<Node> queue = new LinkedList<Node>();
+        Map<Node,Node> parents = new HashMap<>();
+        start.setVisited(true);
+        queue.add(start);
 
-        while(!stack.empty()){
-            Node currentNode = stack.pop();
-            currentNode.setVisited(true);
+        while(!queue.isEmpty()){
+            Node currentNode = queue.poll();
+
             if(currentNode == end){
                 findPath(parents,end);
                 return;
             }
-
             for(Node neighbor:getNodeNeighbors(currentNode)){
                 if(!neighbor.isVisited()){
+                    neighbor.setVisited(true);
                     parents.put(neighbor,currentNode);
                     if(neighbor==end)
                         neighbor.setNodeType(Constants.NODE_END);
                     else
                         neighbor.setNodeType(Constants.NODE_VALID);
 
-                    stack.push(neighbor);
+                    queue.add(neighbor);
                 }
             }
             notifyObservers();
@@ -58,5 +59,4 @@ public class DFS extends PathFindingAlgo {
         }
 
     }
-
 }

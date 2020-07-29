@@ -35,13 +35,12 @@ public class Dijkstra extends PathFindingAlgo {
         start.setG(0);
         start.setH(0);
         start.calculateF();
+        start.setVisited(true);
 
         queue.add(start);
 
         while(!queue.isEmpty()){
             Node currentNode = queue.poll();
-            currentNode.setVisited(true);
-
 
             if(currentNode == end){
                 findPath(parents,end);
