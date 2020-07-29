@@ -1,6 +1,7 @@
 package ui;
 
 import algorithm.Astar;
+import algorithm.DFS;
 import algorithm.Dijkstra;
 import algorithm.PathFindingAlgo;
 import model.Constants;
@@ -193,7 +194,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
         if(keyEvent.getKeyChar() == 's' || keyEvent.getKeyChar() =='e')
             currentKey = keyEvent.getKeyChar();
         else if(keyEvent.getKeyCode() == KeyEvent.VK_SPACE){
-            setPathFindingAlgo(new Dijkstra());
+            setPathFindingAlgo(new Astar());
             startAlgo();
 
         }

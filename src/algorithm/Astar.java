@@ -58,7 +58,10 @@ public class Astar extends PathFindingAlgo {
                     if(!neighbor.isVisited()){
                         queue.add(neighbor);
                         neighbor.setVisited(true);
-                        neighbor.setNodeType(Constants.NODE_VALID);
+                        if(neighbor == end)
+                            neighbor.setNodeType(Constants.NODE_END);
+                        else
+                            neighbor.setNodeType(Constants.NODE_VALID);
 
                     }
                 }
