@@ -1,21 +1,28 @@
 package ui;
 
+import algorithm.Astar;
+import algorithm.PathFindingAlgo;
 import model.Constants;
 import model.Node;
+import observer.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Visualization extends JPanel implements MouseMotionListener,MouseListener,KeyListener {
+public class Visualization extends JPanel implements MouseMotionListener,MouseListener,KeyListener, Observer {
 
     public Node[][] board = new Node[50][50];
     public Node startNode = null;
     public Node endNode = null;
     private char currentKey = (char)0;
     public boolean algorithmRunning = false;
-
+    public PathFindingAlgo pathFindingAlgo;
+    private ExecutorService executorService;
+    private Thread pathFindingThread;
 
 
     public Visualization(){
@@ -24,6 +31,23 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
         this.addMouseMotionListener(this);
         this.addMouseListener(this);
         this.addKeyListener(this);
+        this.executorService = Executors.newFixedThreadPool(10);
+
+
+
+    }
+    public void setPathFindingAlgo(PathFindingAlgo pathFindingAlgo){
+        this.pathFindingAlgo = pathFindingAlgo;
+        this.pathFindingAlgo.addObserver(this);
+        this.pathFindingAlgo.setBoard(board);
+        this.pathFindingAlgo.setStart(startNode);
+        this.pathFindingAlgo.setEnd(endNode);
+        this.pathFindingAlgo.setSleepTime(20);
+
+    }
+    public void startAlgo(){
+        pathFindingThread = new Thread(this.pathFindingAlgo);
+        executorService.submit(pathFindingThread);
 
 
     }
@@ -46,16 +70,19 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
         graphics2D.setColor(new Color(255,255,255));
         for(int i=0;i<50;i++){
             graphics2D.drawLine(0,i*nodeWidth,800,i*nodeWidth);
-            for(int j=0;j<50;j++){
-                graphics2D.drawLine(j*nodeWidth,0,j*nodeWidth,800);
+        }
+        for(int j=0;j<50;j++){
+            graphics2D.drawLine(j*nodeWidth,0,j*nodeWidth,800);
 
-            }
         }
     }
     private void drawNode(Graphics g,Node node){
         Graphics2D graphics2D = (Graphics2D)g;
         graphics2D.setColor(node.getNodeColor());
         graphics2D.fillRect(node.getX(),node.getY(),node.getNodeWidth()-1,node.getNodeWidth()-1);
+
+    }
+    private void clearBoard(){
 
     }
 
@@ -103,6 +130,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
             }
 
+
         }
         else if(SwingUtilities.isRightMouseButton(e)){
             if(node.getNodeType().equals(Constants.NODE_BLOCK)){
@@ -110,6 +138,12 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
             }
             repaint();
         }
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Repaint");
+        repaint();
     }
 
     @Override
@@ -156,7 +190,15 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     @Override
     public void keyPressed(KeyEvent keyEvent) {
 
-        currentKey = keyEvent.getKeyChar();
+        if(keyEvent.getKeyChar() == 's' || keyEvent.getKeyChar() =='e')
+            currentKey = keyEvent.getKeyChar();
+        else if(keyEvent.getKeyCode() == KeyEvent.VK_SPACE){
+            setPathFindingAlgo(new Astar());
+            startAlgo();
+
+        }
+
+
     }
 
     @Override

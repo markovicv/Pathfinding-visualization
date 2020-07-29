@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e50a962-876c-4a17-89c8-940b1204d718" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/model/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PathFindingApp/model/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/model/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PathFindingApp/model/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/ui/Visualization.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PathFindingApp/ui/Visualization.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/PathFindingAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/PathFindingAlgo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Visualization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Visualization.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -63,7 +70,8 @@
       <option name="presentableId" value="Default" />
       <updated>1595929639961</updated>
       <workItem from="1595929645112" duration="7576000" />
-      <workItem from="1595945576006" duration="1513000" />
+      <workItem from="1595945576006" duration="1707000" />
+      <workItem from="1595947650326" duration="8605000" />
     </task>
     <servers />
   </component>
@@ -71,29 +79,56 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="769" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1595936679024">
+    <state x="769" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1595955816435">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="769" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1595936679024" />
-    <state width="1874" height="287" key="GridCell.Tab.0.bottom" timestamp="1595946943803">
+    <state x="769" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1595955816435" />
+    <state width="1874" height="287" key="GridCell.Tab.0.bottom" timestamp="1596019276152">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="287" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1595946943803" />
-    <state width="1874" height="287" key="GridCell.Tab.0.center" timestamp="1595946943802">
+    <state width="1874" height="287" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1596019276152" />
+    <state width="1874" height="287" key="GridCell.Tab.0.center" timestamp="1596019276152">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="287" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1595946943802" />
-    <state width="1874" height="287" key="GridCell.Tab.0.left" timestamp="1595946943800">
+    <state width="1874" height="287" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1596019276152" />
+    <state width="1874" height="287" key="GridCell.Tab.0.left" timestamp="1596019276152">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="287" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1595946943800" />
-    <state width="1874" height="287" key="GridCell.Tab.0.right" timestamp="1595946943803">
+    <state width="1874" height="287" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1596019276152" />
+    <state width="1874" height="287" key="GridCell.Tab.0.right" timestamp="1596019276152">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="287" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1595946943803" />
-    <state x="641" y="366" key="com.intellij.ide.util.TipDialog" timestamp="1595945576988">
+    <state width="1874" height="287" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1596019276152" />
+    <state width="1874" height="251" key="GridCell.Tab.1.bottom" timestamp="1595955761090">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="641" y="366" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1595945576988" />
+    <state width="1874" height="251" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1595955761090" />
+    <state width="1874" height="251" key="GridCell.Tab.1.center" timestamp="1595955761085">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="251" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1595955761085" />
+    <state width="1874" height="251" key="GridCell.Tab.1.left" timestamp="1595955761083">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="251" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1595955761083" />
+    <state width="1874" height="251" key="GridCell.Tab.1.right" timestamp="1595955761089">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="251" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1595955761089" />
+    <state x="641" y="366" key="com.intellij.ide.util.TipDialog" timestamp="1595947659449">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="641" y="366" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1595947659449" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/algorithm/Astar.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

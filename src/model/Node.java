@@ -2,7 +2,8 @@ package model;
 
 import java.awt.*;
 
-public class Node {
+
+public class Node implements Comparable<Node> {
     private int row;
     private int col;
     private int f;
@@ -39,13 +40,25 @@ public class Node {
         if(nodeType.equals(Constants.NODE_END)){
             this.nodeColor = new Color(255,0,0);
         }
+        if(nodeType.equals(Constants.NODE_VALID)){
+            this.nodeColor = new Color(0,0,255);
+        }
+        if(nodeType.equals(Constants.NODE_NOT_VALID)){
+            this.nodeColor = new Color(125,125,125);
+        }
     }
-    public void draw(Graphics g){
-        Graphics2D graphics2D = (Graphics2D)g;
-        graphics2D.setColor(this.nodeColor);
-        graphics2D.drawRect(this.x,this.y,this.nodeWidth,this.nodeWidth);
-        graphics2D.fillRect(this.x,this.y,this.nodeWidth-1,this.nodeWidth-1);
 
+    @Override
+    public int compareTo(Node node) {
+        if(this.getF()>node.getF())
+            return 1;
+        else if(this.getF()<node.getF())
+            return -1;
+        return 0;
+    }
+
+    public void calculateF(){
+        this.f = this.g+this.h;
     }
 
     public int getRow() {
