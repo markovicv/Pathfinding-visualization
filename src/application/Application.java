@@ -1,5 +1,6 @@
 package application;
 
+import model.Constants;
 import ui.CommandView;
 import ui.Visualization;
 
@@ -11,9 +12,9 @@ public class Application extends JFrame {
     public Application(){
         super("Path finding");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(810,900);
+        this.setSize(Constants.WIDTH+15,Constants.HEIGHT);
         Visualization visualization = new Visualization();
-        CommandView commandView = new CommandView();
+        CommandView commandView = new CommandView(visualization);
 
         visualization.setPreferredSize(new Dimension(800,800));
         commandView.setPreferredSize(new Dimension(800,100));

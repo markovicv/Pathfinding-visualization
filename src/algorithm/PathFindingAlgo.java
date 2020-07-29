@@ -51,7 +51,7 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
         }
     }
     protected boolean isValid(Node node,int rowDir,int colDir){
-        if(node.getRow()<49 && node.getRow()>0 && node.getCol()<49 && node.getCol()>0 && board[node.getRow()+rowDir][node.getCol()+colDir].getNodeType()!= Constants.NODE_BLOCK)
+        if(node.getRow()<Constants.ROW_NUMBER-1 && node.getRow()>0 && node.getCol()<Constants.ROW_NUMBER-1 && node.getCol()>0 && board[node.getRow()+rowDir][node.getCol()+colDir].getNodeType()!= Constants.NODE_BLOCK)
             return true;
         return false;
 

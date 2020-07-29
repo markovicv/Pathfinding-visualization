@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 
 public class Visualization extends JPanel implements MouseMotionListener,MouseListener,KeyListener, Observer {
 
-    public Node[][] board = new Node[50][50];
+    public Node[][] board = new Node[Constants.ROW_NUMBER][Constants.ROW_NUMBER];
     public Node startNode = null;
     public Node endNode = null;
     private char currentKey = (char)0;
@@ -52,9 +52,9 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     }
 
     public void makeBoard(){
-        int node_width = 800/50;
-        for(int i=0;i<50;i++){
-            for(int j=0;j<50;j++){
+        int node_width = Constants.WIDTH/Constants.ROW_NUMBER;
+        for(int i=0;i<Constants.ROW_NUMBER;i++){
+            for(int j=0;j<Constants.ROW_NUMBER;j++){
                 board[i][j] = new Node(i,j, Constants.NODE_EMPTY,node_width);
 
             }
@@ -65,13 +65,13 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     private void drawBoard(Graphics g){
         Graphics2D graphics2D = (Graphics2D)g;
-        int nodeWidth = 800/50;
+        int nodeWidth = Constants.WIDTH/Constants.ROW_NUMBER;
         graphics2D.setColor(new Color(255,255,255));
-        for(int i=0;i<50;i++){
-            graphics2D.drawLine(0,i*nodeWidth,800,i*nodeWidth);
+        for(int i=0;i<Constants.ROW_NUMBER;i++){
+            graphics2D.drawLine(0,i*nodeWidth,Constants.WIDTH,i*nodeWidth);
         }
-        for(int j=0;j<50;j++){
-            graphics2D.drawLine(j*nodeWidth,0,j*nodeWidth,800);
+        for(int j=0;j<Constants.ROW_NUMBER;j++){
+            graphics2D.drawLine(j*nodeWidth,0,j*nodeWidth,Constants.WIDTH);
 
         }
     }
@@ -81,7 +81,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
         graphics2D.fillRect(node.getX(),node.getY(),node.getNodeWidth()-1,node.getNodeWidth()-1);
 
     }
-    private void clearBoard(){
+    public void clearBoard(){
         makeBoard();
         startNode = null;
         endNode=null;
@@ -93,8 +93,8 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for(int i=0;i<50;i++){
-            for(int j=0;j<50;j++){
+        for(int i=0;i<Constants.ROW_NUMBER;i++){
+            for(int j=0;j<Constants.ROW_NUMBER;j++){
                 drawNode(g,board[i][j]);
             }
         }
@@ -105,7 +105,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     }
 
     private void renderNodeState(MouseEvent e){
-        int nodeWidth = 800/50;
+        int nodeWidth = Constants.WIDTH/Constants.ROW_NUMBER;
         int row = e.getX()/nodeWidth;
         int col = e.getY()/nodeWidth;
         Node node = board[row][col];
@@ -166,6 +166,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
+
         if(this.pathFindingAlgo==null|| !this.pathFindingAlgo.isRunning())
             renderNodeState(mouseEvent);
     }
@@ -197,7 +198,6 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-
         if(keyEvent.getKeyChar() == 's' || keyEvent.getKeyChar() =='e')
             currentKey = keyEvent.getKeyChar();
         if(keyEvent.getKeyChar()=='c')

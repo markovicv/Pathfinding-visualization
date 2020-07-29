@@ -22,4 +22,8 @@ public class Constants {
     public final static String NODE_START_ERROR = "Start node is not defined";
     public final static String NODE_END_ERROR = "End node is not defined";
 
+    public final static int WIDTH = 1200;
+    public final static int HEIGHT = 900;
+    public final static int ROW_NUMBER = 100;
+
 }
