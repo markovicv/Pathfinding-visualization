@@ -16,6 +16,7 @@ public class Node implements Comparable<Node> {
     private int nodeWidth;
     private Color nodeColor;
 
+
     public Node(int row,int col,String nodeType,int nodeWidth){
         this.row = row;
         this.col = col;
@@ -29,22 +30,25 @@ public class Node implements Comparable<Node> {
     }
     private void setNodeColor(){
         if(nodeType.equals(Constants.NODE_EMPTY)){
-            this.nodeColor = new Color(255,255,255);
+            this.nodeColor = Constants.WHITE;
         }
         if(nodeType.equals(Constants.NODE_BLOCK)){
-            this.nodeColor = new Color(0,0,0);
+            this.nodeColor = Constants.BLACK;
         }
         if(nodeType.equals(Constants.NODE_START)){
-            this.nodeColor = new Color(0,255,0);
+            this.nodeColor = Constants.GREEN;
         }
         if(nodeType.equals(Constants.NODE_END)){
-            this.nodeColor = new Color(255,0,0);
+            this.nodeColor = Constants.RED;
         }
         if(nodeType.equals(Constants.NODE_VALID)){
-            this.nodeColor = new Color(0,0,255);
+            this.nodeColor = Constants.LIGHT_GREY;
         }
         if(nodeType.equals(Constants.NODE_NOT_VALID)){
-            this.nodeColor = new Color(125,125,125);
+            this.nodeColor = Constants.LIGHT_BLUE;
+        }
+        if(nodeType.equals(Constants.NODE_PATH)){
+            this.nodeColor = Constants.GOLD;
         }
     }
 
@@ -149,4 +153,6 @@ public class Node implements Comparable<Node> {
     public void setNodeColor(Color nodeColor) {
         this.nodeColor = nodeColor;
     }
+
+
 }

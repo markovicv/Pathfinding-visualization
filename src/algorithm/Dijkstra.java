@@ -3,20 +3,17 @@ package algorithm;
 import model.Constants;
 import model.Node;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
-public class Astar extends PathFindingAlgo {
-
-    public Astar(){
-
-    }
-
+public class Dijkstra extends PathFindingAlgo {
 
     @Override
     public void start() {
-        isRunning=true;
-        astarPathFinding();
-        isRunning = false;
+        dijkstraPathFinding();
+
 
     }
     private void findPath(Map<Node,Node> parents,Node end){
@@ -31,48 +28,47 @@ public class Astar extends PathFindingAlgo {
         notifyObservers();
     }
 
-    private void astarPathFinding(){
+
+    private void dijkstraPathFinding(){
         Queue<Node> queue = new PriorityQueue<Node>();
-        Map<Node,Node>parents = new HashMap<>();
-        queue.add(start);
+        Map<Node,Node> parents = new HashMap<>();
         start.setG(0);
-        start.setH(manhatanDistance(start,end));
+        start.setH(0);
         start.calculateF();
+
+        queue.add(start);
 
         while(!queue.isEmpty()){
             Node currentNode = queue.poll();
             currentNode.setVisited(true);
 
+
             if(currentNode == end){
-               findPath(parents,end);
+                findPath(parents,end);
                 return;
             }
-            for(Node neighbor:getNodeNeighbors(currentNode)){
+            for(Node neighbor : getNodeNeighbors(currentNode)){
                 int gScoreTmp = currentNode.getG()+1;
-                if(gScoreTmp<neighbor.getG()){
+                if(gScoreTmp < neighbor.getG()){
                     parents.put(neighbor,currentNode);
                     neighbor.setG(gScoreTmp);
-                    neighbor.setH(manhatanDistance(neighbor,end));
+                    neighbor.setH(0);
                     neighbor.calculateF();
 
                     if(!neighbor.isVisited()){
                         queue.add(neighbor);
                         neighbor.setVisited(true);
                         neighbor.setNodeType(Constants.NODE_VALID);
-
                     }
                 }
-            }
 
+            }
             notifyObservers();
             sleep();
             if(currentNode!=start){
                 currentNode.setNodeType(Constants.NODE_NOT_VALID);
             }
-
         }
-
-
 
     }
 }
