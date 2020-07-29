@@ -25,13 +25,14 @@ public class Astar extends PathFindingAlgo {
         Queue<Node> queue = new PriorityQueue<Node>();
         Map<Node,Node>parents = new HashMap<>();
         queue.add(start);
-        start.setVisited(true);
+
         start.setG(0);
         start.setH(manhatanDistance(start,end));
         start.calculateF();
 
         while(!queue.isEmpty()){
             Node currentNode = queue.poll();
+            currentNode.setVisited(true);
 
             if(currentNode == end){
                findPath(parents,end);

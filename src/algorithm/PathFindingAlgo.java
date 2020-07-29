@@ -18,7 +18,7 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
     protected Node end;
 
     private int[] rowDir = {1,-1,0,0};
-    private int[] colDir = {0,0,1,-1};
+    private int[] colDir = {0,0,1,-1 };
 
 
 
@@ -34,16 +34,14 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
     public void setEnd(Node end){
         this.end = end;
     }
-    public boolean isAlgoRunning(boolean run) {
-        return isRunning;
-    }
+
 
 
     public void setSleepTime(int sleepTime){
         this.sleepTime = sleepTime;
     }
 
-    protected void sleep(){
+    public void sleep(){
         try {
             Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
@@ -101,6 +99,7 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
         while(parents.containsKey(end)){
             end = parents.get(end);
             end.setNodeType(Constants.NODE_PATH);
+            sleep();
             notifyObservers();
         }
         start.setNodeType(Constants.NODE_START);
