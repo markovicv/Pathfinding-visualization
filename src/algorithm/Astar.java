@@ -19,17 +19,7 @@ public class Astar extends PathFindingAlgo {
         isRunning = false;
 
     }
-    private void findPath(Map<Node,Node> parents,Node end){
-        Node tmpEnd = end;
-        while(parents.containsKey(end)){
-            end = parents.get(end);
-            end.setNodeType(Constants.NODE_PATH);
-            notifyObservers();
-        }
-        start.setNodeType(Constants.NODE_START);
-        tmpEnd.setNodeType(Constants.NODE_END);
-        notifyObservers();
-    }
+
 
     private void astarPathFinding(){
         Queue<Node> queue = new PriorityQueue<Node>();

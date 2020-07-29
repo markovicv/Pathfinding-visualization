@@ -7,6 +7,7 @@ import observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 abstract public class PathFindingAlgo implements Runnable, Observable {
     protected List<Observer> observers = new ArrayList<>();
@@ -86,5 +87,24 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
     @Override
     public void run() {
         start();
+    }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setRunning(boolean running) {
+        isRunning = running;
+    }
+    protected void findPath(Map<Node,Node> parents, Node end){
+        Node tmpEnd = end;
+        while(parents.containsKey(end)){
+            end = parents.get(end);
+            end.setNodeType(Constants.NODE_PATH);
+            notifyObservers();
+        }
+        start.setNodeType(Constants.NODE_START);
+        tmpEnd.setNodeType(Constants.NODE_END);
+        notifyObservers();
     }
 }

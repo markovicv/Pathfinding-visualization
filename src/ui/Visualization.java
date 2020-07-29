@@ -82,6 +82,10 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     }
     private void clearBoard(){
+        makeBoard();
+        startNode = null;
+        endNode=null;
+        repaint();
 
     }
 
@@ -100,21 +104,17 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     }
 
-    private void renderNode(MouseEvent e){
+    private void renderNodeState(MouseEvent e){
         int nodeWidth = 800/50;
         int row = e.getX()/nodeWidth;
         int col = e.getY()/nodeWidth;
         Node node = board[row][col];
 
         if(SwingUtilities.isLeftMouseButton(e)){
-
-
             if(currentKey == 's' && startNode==null){
                 startNode = node;
                 startNode.setNodeType(Constants.NODE_START);
                 repaint();
-
-
 
             }
              if(currentKey == 'e' && endNode==null){
@@ -135,6 +135,14 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
             if(node.getNodeType().equals(Constants.NODE_BLOCK)){
                 node.setNodeType(Constants.NODE_EMPTY);
             }
+            if(node.getNodeType().equals(Constants.NODE_START)){
+                node.setNodeType(Constants.NODE_EMPTY);
+                startNode = null;
+            }
+            if(node.getNodeType().equals(Constants.NODE_END)){
+                node.setNodeType(Constants.NODE_EMPTY);
+                endNode = null;
+            }
             repaint();
         }
     }
@@ -146,7 +154,8 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
-        renderNode(mouseEvent);
+        if(this.pathFindingAlgo==null|| !this.pathFindingAlgo.isRunning())
+            renderNodeState(mouseEvent);
 
     }
 
@@ -157,7 +166,8 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        renderNode(mouseEvent);
+        if(this.pathFindingAlgo==null|| !this.pathFindingAlgo.isRunning())
+            renderNodeState(mouseEvent);
     }
 
     @Override
@@ -190,8 +200,18 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
         if(keyEvent.getKeyChar() == 's' || keyEvent.getKeyChar() =='e')
             currentKey = keyEvent.getKeyChar();
+        if(keyEvent.getKeyChar()=='c')
+            clearBoard();
         else if(keyEvent.getKeyCode() == KeyEvent.VK_SPACE){
-            setPathFindingAlgo(new BFS());
+            if(startNode==null){
+                JOptionPane.showMessageDialog(this,Constants.NODE_START_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if(endNode == null){
+                JOptionPane.showMessageDialog(this,Constants.NODE_END_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            setPathFindingAlgo(new Astar());
             startAlgo();
 
         }
