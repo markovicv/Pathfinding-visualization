@@ -159,6 +159,8 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
+        if(mouseEvent.getX()>=Constants.WIDTH || mouseEvent.getX()<=0 || mouseEvent.getY()>=Constants.WIDTH || mouseEvent.getY()<=0)
+            return;
         if(this.pathFindingAlgo==null|| !this.pathFindingAlgo.isRunning())
             renderNodeState(mouseEvent);
 
