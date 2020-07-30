@@ -45,10 +45,14 @@ public class CommandView extends JPanel {
             visualization.setPathFindingAlgo(generatePathfindingAlgo(algoList.getSelectedItem().toString()),generatePathfindingSpeed(speedList.getSelectedItem().toString()));
             if(!visualization.errorChecking() && !visualization.isAlgorithmRunning())
                 visualization.startAlgo();
+
         });
         btnClear.addActionListener(actionEvent->{
             if(!visualization.isAlgorithmRunning())
-            visualization.clearBoard();
+                visualization.clearBoard();
+            else{
+                JOptionPane.showMessageDialog(this,Constants.ALGO_WORKING_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+            }
         });
 
     }

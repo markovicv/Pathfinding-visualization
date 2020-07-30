@@ -22,6 +22,7 @@ public class Constants {
     public final static String NODE_START_ERROR = "Start node is not defined";
     public final static String NODE_END_ERROR = "End node is not defined";
     public final static String ZOOM_ERROR = "Board must be cleared";
+    public final static String ALGO_WORKING_ERROR = "Algorithm is working";
 
     public final static int WIDTH = 800;
     public final static int HEIGHT = 900;

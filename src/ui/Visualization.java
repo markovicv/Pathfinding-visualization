@@ -55,6 +55,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
 
     }
+
     public boolean isAlgorithmRunning(){
         if(pathFindingAlgo!=null)
             return pathFindingAlgo.isRunning();
@@ -171,7 +172,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
-        if(this.pathFindingAlgo==null|| !this.pathFindingAlgo.isRunning())
+        if(this.pathFindingAlgo==null|| !this.pathFindingAlgo.isRunning() )
             renderNodeState(mouseEvent);
     }
 

@@ -29,8 +29,8 @@ public class Astar extends PathFindingAlgo {
         start.setG(0);
         start.setH(manhatanDistance(start,end));
         start.calculateF();
-
         while(!queue.isEmpty()){
+
             Node currentNode = queue.poll();
             currentNode.setVisited(true);
 

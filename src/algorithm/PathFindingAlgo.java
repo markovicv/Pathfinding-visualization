@@ -8,6 +8,7 @@ import observer.Observer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 abstract public class PathFindingAlgo implements Runnable, Observable {
     protected List<Observer> observers = new ArrayList<>();
@@ -16,6 +17,7 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
     protected Node[][] board;
     protected Node start;
     protected Node end;
+
 
     private int[] rowDir = {1,-1,0,0};
     private int[] colDir = {0,0,1,-1 };
@@ -34,6 +36,8 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
     public void setEnd(Node end){
         this.end = end;
     }
+
+
 
 
 
