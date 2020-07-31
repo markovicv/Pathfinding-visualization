@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,6 +21,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     private int zoom = 2;
     public Node startNode = null;
     private boolean boardCleared=true;
+    private Random random;
     public Node endNode = null;
     private char currentKey = (char)0;
     public PathFindingAlgo pathFindingAlgo;
@@ -35,6 +38,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
         this.addKeyListener(this);
         this.addMouseWheelListener(this);
         this.draw = draw;
+        this.random = new Random();
         this.executorService = Executors.newFixedThreadPool(10);
 
 
@@ -232,7 +236,7 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
             if(isAlgorithmRunning())
                 return;
             if(!boardCleared){
-                JOptionPane.showMessageDialog(this,Constants.NODE_START_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,Constants.ZOOM_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
                 return;
             }
             zoom--;
@@ -253,4 +257,5 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
         }
 
     }
+
 }
