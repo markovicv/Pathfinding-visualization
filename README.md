@@ -16,10 +16,10 @@ Project shows a visualization of the most popular pathfinding algorithms, allows
 - DFS
 
 ### App comands:
-- Left click - puts a wall
-- Left click + s - puts a start
-- Left click + e - puts a end
-- Right click - deletes selected square in a board to empty
+- Left click - wall node
+- Left click + s - start node
+- Left click + e - end node
+- Right click - delete a node
 
 ### App in action
 ![2020-07-31 13-21-10](https://user-images.githubusercontent.com/54250129/89048900-bbcf7080-d350-11ea-80a3-f8347df1c408.gif)
