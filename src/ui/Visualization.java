@@ -120,13 +120,14 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
         Node node = board[row][col];
         boardCleared=false;
         if(SwingUtilities.isLeftMouseButton(e)){
-            if(currentKey == 's' && startNode==null){
+
+            if(currentKey == 's' && startNode==null && node.getNodeType().equals(Constants.NODE_EMPTY)){
                 startNode = node;
                 startNode.setNodeType(Constants.NODE_START);
                 repaint();
 
             }
-             else if(currentKey == 'e' && endNode==null){
+             else if(currentKey == 'e' && endNode==null && node.getNodeType().equals(Constants.NODE_EMPTY)){
                 endNode = node;
                 endNode.setNodeType(Constants.NODE_END);
                 repaint();
