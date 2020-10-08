@@ -25,6 +25,7 @@ public class Astar extends PathFindingAlgo {
         Queue<Node> queue = new PriorityQueue<Node>();
         Map<Node,Node>parents = new HashMap<>();
         queue.add(start);
+        System.out.println("row in algo"+this.start.getRow());
 
         start.setG(0);
         start.setH(manhatanDistance(start,end));
@@ -48,7 +49,6 @@ public class Astar extends PathFindingAlgo {
 
                     if(!neighbor.isVisited()){
                         queue.add(neighbor);
-                        neighbor.setVisited(true);
                         if(neighbor == end)
                             neighbor.setNodeType(Constants.NODE_END);
                         else

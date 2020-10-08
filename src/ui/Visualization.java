@@ -43,6 +43,8 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
 
 
+
+
     }
     public void setPathFindingAlgo(PathFindingAlgo pathFindingAlgo,int pathfindingSpeed){
         this.pathFindingAlgo = pathFindingAlgo;
@@ -222,11 +224,49 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
 
 
     }
-    private void redrawGrid(){
-        Constants.ROW_NUMBER = rowNumber[zoom];
-        board = new Node[Constants.ROW_NUMBER][Constants.ROW_NUMBER];
-        makeBoard();
-        repaint();
+    private void redrawGrid(boolean option){
+
+        if(!option){
+            List<Node> nodes = new ArrayList<>();
+
+            for(int i=0;i< board.length;i++){
+                for(int j=0;j<board[0].length;j++){
+                    if(!board[i][j].getNodeType().equals(Constants.NODE_EMPTY)){
+                        Node n = board[i][j];
+                        nodes.add(n);
+                    }
+                }
+            }
+            Constants.ROW_NUMBER = rowNumber[zoom];
+            board = new Node[Constants.ROW_NUMBER][Constants.ROW_NUMBER];
+            makeBoard();
+            for(Node n:nodes){
+                int row = n.getRow();
+                int col = n.getCol();
+                int newRow = (board.length- rowNumber[zoom-1])/2 +row;
+                int newCol = (board.length- rowNumber[zoom-1])/2+col;
+                Node newNode = new Node(newRow,newCol,n.getNodeType(),Constants.WIDTH/Constants.ROW_NUMBER);
+
+                if(newNode.getNodeType().equals(Constants.NODE_START)) {
+                    startNode = newNode;
+                }
+                else if(newNode.getNodeType().equals(Constants.NODE_END)){
+                    endNode = newNode;
+                }
+                board[newRow][newCol] = newNode;
+            }
+
+
+            repaint();
+
+        }
+        else{
+            Constants.ROW_NUMBER = rowNumber[zoom];
+            board = new Node[Constants.ROW_NUMBER][Constants.ROW_NUMBER];
+            makeBoard();
+            repaint();
+        }
+
     }
 
     @Override
@@ -241,7 +281,9 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
                 return;
             }
             zoom--;
-           redrawGrid();
+           redrawGrid(true);
+
+
         }
 
         else {
@@ -249,12 +291,12 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
                 return;
             if(isAlgorithmRunning())
                 return;
-            if(!boardCleared){
-                JOptionPane.showMessageDialog(this,Constants.ZOOM_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+//            if(!boardCleared){
+//                JOptionPane.showMessageDialog(this,Constants.ZOOM_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
             zoom++;
-            redrawGrid();
+            redrawGrid(false);
         }
 
     }
