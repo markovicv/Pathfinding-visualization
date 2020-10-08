@@ -49,7 +49,7 @@ public class CommandView extends JPanel {
         });
         btnClear.addActionListener(actionEvent->{
             if(!visualization.isAlgorithmRunning())
-                visualization.clearBoard();
+                visualization.clearAlgo();
             else{
                 JOptionPane.showMessageDialog(this,Constants.ALGO_WORKING_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
             }

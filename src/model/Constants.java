@@ -32,4 +32,7 @@ public class Constants {
     public static final int MEDIUM = 8;
     public static final int FAST = 1;
 
+    public static final String ZOOM_IN = "ZOOM_IN";
+    public static final String ZOOM_OUT = "ZOOM_OUT";
+
 }
