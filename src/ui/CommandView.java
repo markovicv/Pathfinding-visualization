@@ -13,6 +13,7 @@ public class CommandView extends JPanel {
     private JComboBox speedList;
     private JButton btnVisualize = new JButton("Visualize");
     private JButton btnClear = new JButton("Clear");
+    private JButton btnNewBoard = new JButton("new board");
     private Visualization visualization;
 
 
@@ -28,16 +29,19 @@ public class CommandView extends JPanel {
     private void initView(){
         btnVisualize.setPreferredSize(new Dimension(120,25));
         btnClear.setPreferredSize(new Dimension(120,25));
+        btnNewBoard.setPreferredSize(new Dimension(120,25));
         this.algoList.setFocusable(false);
         this.btnVisualize.setFocusable(false);
         this.btnClear.setFocusable(false);
         this.speedList.setFocusable(false);
+        this.btnNewBoard.setFocusable(false);
         this.add(new JLabel("Pathfinding algorithm: "));
         this.add(algoList);
         this.add(new JLabel("Speed: "));
         this.add(speedList);
         this.add(btnVisualize);
         this.add(btnClear);
+        this.add(btnNewBoard);
     }
 
     private void initListeners(){
@@ -54,6 +58,14 @@ public class CommandView extends JPanel {
                 JOptionPane.showMessageDialog(this,Constants.ALGO_WORKING_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
             }
         });
+        btnNewBoard.addActionListener(actionEvent->{
+            if(!visualization.isAlgorithmRunning())
+                visualization.clearBoard();
+            else{
+                JOptionPane.showMessageDialog(this,Constants.ALGO_WORKING_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
 
     }
     private PathFindingAlgo generatePathfindingAlgo(String algo){
