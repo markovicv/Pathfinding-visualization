@@ -21,18 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2e50a962-876c-4a17-89c8-940b1204d718" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/application/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PathFindingApp/application/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/model/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PathFindingApp/model/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/model/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PathFindingApp/model/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/ui/CommandView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PathFindingApp/ui/CommandView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PathFindingApp/ui/Visualization.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/PathFindingAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/PathFindingAlgo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/CommandView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/CommandView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Astar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/Astar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/MatrixView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MatrixView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Visualization.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

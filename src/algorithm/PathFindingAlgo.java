@@ -111,4 +111,5 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
         tmpEnd.setNodeType(Constants.NODE_END);
         notifyObservers();
     }
+
 }
