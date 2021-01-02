@@ -11,15 +11,14 @@ public class Application extends JFrame {
     public Application(){
         super("Path finding");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        this.setSize(Constants.WIDTH+15,Constants.HEIGHT);
         setSize(Constants.WIDTH,Constants.HEIGHT);
-//        Visualization visualization = new Visualization(new Draw(),new MatrixModel());
         MatrixView mv = new MatrixView();
-        CommandView commandView = new CommandView();
+        CommandView commandView = new CommandView(mv);
 
-//        visualization.setPreferredSize(new Dimension(Constants.WIDTH,Constants.WIDTH));
+        final JScrollPane jScrollPane = new JScrollPane();
+        jScrollPane.setViewportView(mv);
         commandView.setPreferredSize(new Dimension(Constants.WIDTH,60));
-        this.add(new JScrollPane(mv),BorderLayout.CENTER);
+        this.add(jScrollPane,BorderLayout.CENTER);
         this.add(commandView,BorderLayout.SOUTH);
 
         this.setLocationRelativeTo(null);

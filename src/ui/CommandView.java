@@ -14,11 +14,11 @@ public class CommandView extends JPanel {
     private JButton btnVisualize = new JButton("Visualize");
     private JButton btnClear = new JButton("Clear");
     private JButton btnNewBoard = new JButton("new board");
-    private Visualization visualization;
+    private MatrixView visualization;
 
 
-    public CommandView(){
-        this.visualization = visualization;
+    public CommandView(MatrixView matrixView){
+        this.visualization = matrixView;
         this.setLayout(new FlowLayout());
         this.algoList = new JComboBox(algorithms);
         this.speedList = new JComboBox(speedOptions);

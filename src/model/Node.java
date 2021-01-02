@@ -22,8 +22,6 @@ public class Node implements Comparable<Node> {
         this.col = col;
         this.nodeType = nodeType;
         this.nodeWidth = nodeWidth;
-        this.x = row*nodeWidth;
-        this.y = col*nodeWidth;
         this.visited = false;
         this.f = this.g = this.h = Integer.MAX_VALUE;
         this.setNodeColor();

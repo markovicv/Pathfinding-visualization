@@ -19,6 +19,7 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
     protected Node end;
 
 
+
     private int[] rowDir = {1,-1,0,0};
     private int[] colDir = {0,0,1,-1 };
 
