@@ -26,8 +26,8 @@ public class Constants {
 
     public final static int WIDTH = 800;
     public final static int HEIGHT = 900;
-    public static int ROW_NUMBER = 80;
-
+    public static int ROW_NUMBER = 150;
+    public static int NODE_WIDTH = 20;
     public static final int SLOW = 20;
     public static final int MEDIUM = 8;
     public static final int FAST = 1;

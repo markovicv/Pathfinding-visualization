@@ -6,11 +6,11 @@ import model.Node;
 import javax.swing.*;
 import java.awt.*;
 
-public class Draw extends JPanel {
+public class Draw{
 
     public void drawBoard(Graphics g){
         Graphics2D graphics2D = (Graphics2D)g;
-        int nodeWidth = Constants.WIDTH/Constants.ROW_NUMBER;
+        int nodeWidth = Constants.NODE_WIDTH;
         graphics2D.setColor(new Color(255,255,255));
         for(int i=0;i<Constants.ROW_NUMBER;i++){
             graphics2D.drawLine(0,i*nodeWidth,Constants.WIDTH,i*nodeWidth);

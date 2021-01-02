@@ -17,7 +17,7 @@ public class CommandView extends JPanel {
     private Visualization visualization;
 
 
-    public CommandView(Visualization visualization){
+    public CommandView(){
         this.visualization = visualization;
         this.setLayout(new FlowLayout());
         this.algoList = new JComboBox(algorithms);

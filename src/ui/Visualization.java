@@ -27,24 +27,31 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     private ExecutorService executorService;
     private Thread pathFindingThread;
     private Draw draw;
+    private MatrixModel matrixModel;
 
 
-    public Visualization(Draw draw){
+    public Visualization(Draw draw,MatrixModel matrixModel){
+//        this.matrixModel = matrixModel;
         makeBoard();
+        updateSize();
         this.setFocusable(true);
         this.addMouseMotionListener(this);
         this.addMouseListener(this);
         this.addKeyListener(this);
         this.addMouseWheelListener(this);
         this.draw = draw;
-        this.random = new Random();
         this.executorService = Executors.newFixedThreadPool(10);
 
-
-
-
-
     }
+
+    private void updateSize(){
+        Dimension d = new Dimension(Constants.NODE_WIDTH*board.length,board[0].length*Constants.NODE_WIDTH);
+        setMinimumSize(d);
+        setPreferredSize(d);
+        setMinimumSize(d);
+        System.out.println(d);
+    }
+
     public void setPathFindingAlgo(PathFindingAlgo pathFindingAlgo,int pathfindingSpeed){
         this.pathFindingAlgo = pathFindingAlgo;
         this.pathFindingAlgo.addObserver(this);
@@ -80,10 +87,10 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     }
 
     public void makeBoard(){
-        int node_width = Constants.WIDTH/Constants.ROW_NUMBER;
-        for(int i=0;i<Constants.ROW_NUMBER;i++){
-            for(int j=0;j<Constants.ROW_NUMBER;j++){
-                board[i][j] = new Node(i,j, Constants.NODE_EMPTY,node_width);
+        int nodeWidth = Constants.NODE_WIDTH;
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                board[i][j] = new Node(i,j, Constants.NODE_EMPTY,nodeWidth);
 
             }
 
@@ -104,19 +111,16 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for(int i=0;i<Constants.ROW_NUMBER;i++){
-            for(int j=0;j<Constants.ROW_NUMBER;j++){
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j < board[0].length;j++){
                 draw.drawNode(g,board[i][j]);
             }
         }
         draw.drawBoard(g);
-
-
-
     }
 
     private void renderNodeState(MouseEvent e){
-        int nodeWidth = Constants.WIDTH/Constants.ROW_NUMBER;
+        int nodeWidth =Constants.NODE_WIDTH;
         int row = e.getX()/nodeWidth;
         int col = e.getY()/nodeWidth;
         Node node = board[row][col];
@@ -312,31 +316,23 @@ public class Visualization extends JPanel implements MouseMotionListener,MouseLi
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         if(e.getWheelRotation()<0) {
-            if (zoom <= 0)
-                return;
-            if(isAlgorithmRunning())
-                return;
-//            if(!boardCleared){
-//                JOptionPane.showMessageDialog(this,Constants.ZOOM_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+//            if (zoom <= 0)
 //                return;
-//            }
-            zoom--;
-           redrawGrid(Constants.ZOOM_IN);
+//            if(isAlgorithmRunning())
+//                return;
+//            zoom--;
+//           redrawGrid(Constants.ZOOM_IN);
 
 
         }
 
         else {
-            if(zoom>=3)
-                return;
-            if(isAlgorithmRunning())
-                return;
-//            if(!boardCleared){
-//                JOptionPane.showMessageDialog(this,Constants.ZOOM_ERROR,"Error",JOptionPane.ERROR_MESSAGE);
+//            if(zoom>=3)
 //                return;
-//            }
-            zoom++;
-            redrawGrid(Constants.ZOOM_OUT);
+//            if(isAlgorithmRunning())
+//                return;
+//            zoom++;
+//            redrawGrid(Constants.ZOOM_OUT);
         }
 
     }
