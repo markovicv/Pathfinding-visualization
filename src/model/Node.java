@@ -26,6 +26,10 @@ public class Node implements Comparable<Node> {
         this.f = this.g = this.h = Integer.MAX_VALUE;
         this.setNodeColor();
     }
+    public void emptyValues(){
+        this.f = this.g = this.h = Integer.MAX_VALUE;
+
+    }
     private void setNodeColor(){
         if(nodeType.equals(Constants.NODE_EMPTY)){
             this.nodeColor = Constants.WHITE;

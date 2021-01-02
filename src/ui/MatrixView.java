@@ -98,37 +98,18 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     public void mouseDragged(MouseEvent mouseEvent) {
         if(mouseEvent.getX()>=Constants.WIDTH || mouseEvent.getX()<=0 || mouseEvent.getY()>=Constants.HEIGHT || mouseEvent.getY()<=0)
             return;
-        if(isBeingPressed){
-           redrawAlgo(this.startNode,mouseEvent);
-        }
-        else
-            renderNodeState(mouseEvent);
+
+        renderNodeState(mouseEvent);
     }
 
-    private void redrawAlgo(Node startNode,MouseEvent mouseEvent){
-        int row = mouseEvent.getX()/cellWidth;
-        int col = mouseEvent.getY()/cellWidth;
-        Node n = board[row][col];
 
-        if(!this.isAlgorithmRunning()){
-
-            startNode.setNodeType(Constants.NODE_EMPTY);
-            startNode = n;
-            startNode.setNodeType(Constants.NODE_START);
-
-
-            this.clearAlgo();
-            this.setPathFindingAlgo(this.pathFindingAlgo,0);
-            this.startAlgo();
-            repaint();
-        }
-    }
 
 
     private void renderNodeState(MouseEvent e){
         int row = e.getX()/cellWidth;
         int col = e.getY()/cellWidth;
         Node node = board[row][col];
+
         boardCleared=false;
         if(SwingUtilities.isLeftMouseButton(e)){
 
@@ -170,7 +151,7 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     }
 
     public void setPathFindingAlgo(PathFindingAlgo pathFindingAlgo,int pathfindingSpeed){
-        System.out.println(pathFindingAlgo);
+//        System.out.println(pathFindingAlgo);
         this.pathFindingAlgo = pathFindingAlgo;
         this.pathFindingAlgo.addObserver(this);
         this.pathFindingAlgo.setBoard(board);
@@ -286,26 +267,12 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
-        if(startNode!=null){
-            int row = mouseEvent.getX()/cellWidth;
-            int col = mouseEvent.getY()/cellWidth;
 
-            if(startNode.getRow()==row && startNode.getCol()==col){
-                isBeingPressed=true;
-//                startNode.setNodeType(Constants.NODE_EMPTY);
-
-
-            }
-        }
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-        if(isBeingPressed){
-            redrawAlgo(this.startNode,mouseEvent);
 
-            isBeingPressed=false;
-        }
     }
 
     @Override
