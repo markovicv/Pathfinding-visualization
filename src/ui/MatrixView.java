@@ -308,7 +308,7 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
         startNode.setNodeType(Constants.NODE_START);
         this.clearAlgo();
 
-        this.setPathFindingAlgo(new Astar(),0);
+        this.setPathFindingAlgo(this.pathFindingAlgo,0);
         this.startAlgo();
     }
 
