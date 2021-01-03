@@ -98,7 +98,8 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     public void mouseDragged(MouseEvent mouseEvent) {
         if(mouseEvent.getX()>=Constants.WIDTH || mouseEvent.getX()<=0 || mouseEvent.getY()>=Constants.HEIGHT || mouseEvent.getY()<=0)
             return;
-
+        if(currentKey=='q')
+            return;
         renderNodeState(mouseEvent);
     }
 
@@ -111,6 +112,8 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
         Node node = board[row][col];
 
         boardCleared=false;
+
+
         if(SwingUtilities.isLeftMouseButton(e)){
 
 
@@ -221,14 +224,17 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
             for(int j=0;j<board[0].length;j++){
                 Node n=board[i][j];
                 if(n.getNodeType().equals(Constants.NODE_PATH) || n.getNodeType().equals(Constants.NODE_VALID) || n.getNodeType().equals(Constants.NODE_NOT_VALID))
-                    board[i][j] = new Node(i,j,Constants.NODE_EMPTY,Constants.WIDTH/Constants.ROW_NUMBER);
+                    board[i][j] = new Node(i,j,Constants.NODE_EMPTY,cellWidth);
                 else if(n.getNodeType().equals(Constants.NODE_START)){
-                    board[i][j] = new Node(i,j,Constants.NODE_START,Constants.WIDTH/Constants.ROW_NUMBER);
+                    board[i][j] = new Node(i,j,Constants.NODE_START,cellWidth);
                     startNode = board[i][j];
                 }
                 else if(n.getNodeType().equals(Constants.NODE_END)){
-                    board[i][j] = new Node(i,j,Constants.NODE_END,Constants.WIDTH/Constants.ROW_NUMBER);
+                    board[i][j] = new Node(i,j,Constants.NODE_END,cellWidth);
                     endNode = board[i][j];
+                }
+                else if(n.getNodeType().equals(Constants.NODE_EMPTY)){
+                    board[i][j] = new Node(i,j,Constants.NODE_EMPTY,cellWidth);
                 }
 
 
@@ -250,7 +256,7 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        if(keyEvent.getKeyChar() == 's' || keyEvent.getKeyChar() =='e')
+        if(keyEvent.getKeyChar() == 's' || keyEvent.getKeyChar() =='e'|| keyEvent.getKeyChar()=='q')
             currentKey = keyEvent.getKeyChar();
     }
 
@@ -272,7 +278,18 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
+        if(currentKey=='q' && startNode!=null && endNode!=null){
+            int x = mouseEvent.getX()/cellWidth;
+            int y = mouseEvent.getY()/cellWidth;
+            Node n = board[x][y];
+            startNode.setNodeType(Constants.NODE_EMPTY);
+            startNode = n;
+            startNode.setNodeType(Constants.NODE_START);
+            this.clearAlgo();
 
+            this.setPathFindingAlgo(new Astar(),0);
+            this.startAlgo();
+        }
     }
 
     @Override
