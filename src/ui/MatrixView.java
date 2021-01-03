@@ -2,6 +2,7 @@ package ui;
 
 import algorithm.Astar;
 import algorithm.PathFindingAlgo;
+import contract.RedrawMousleListener;
 import model.Constants;
 import model.Node;
 import observer.Observer;
@@ -32,6 +33,8 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     public boolean boardCleared = true;
     private int cellWidth = NODE_WIDTH;
     private boolean isBeingPressed = false;
+
+    public RedrawMousleListener redrawMousleListener;
 
 
     public MatrixView(){
@@ -98,8 +101,16 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     public void mouseDragged(MouseEvent mouseEvent) {
         if(mouseEvent.getX()>=Constants.WIDTH || mouseEvent.getX()<=0 || mouseEvent.getY()>=Constants.HEIGHT || mouseEvent.getY()<=0)
             return;
-        if(currentKey=='q')
+        if(isBeingPressed && !isAlgorithmRunning()){
+            int x = mouseEvent.getX()/cellWidth;
+            int y = mouseEvent.getY()/cellWidth;
+            if(startNode.getCol()==y &&  startNode.getRow()==x)
+                return;
+            redrawAlgo(mouseEvent);
+
             return;
+        }
+
         renderNodeState(mouseEvent);
     }
 
@@ -118,12 +129,14 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
 
             if(currentKey == 's' && startNode==null && node.getNodeType().equals(Constants.NODE_EMPTY)){
+                redrawMousleListener.changeScroll("start");
                 startNode = node;
                 startNode.setNodeType(Constants.NODE_START);
                 repaint();
 
             }
             else if(currentKey == 'e' && endNode==null && node.getNodeType().equals(Constants.NODE_EMPTY)){
+                redrawMousleListener.changeScroll("end");
                 endNode = node;
                 endNode.setNodeType(Constants.NODE_END);
                 repaint();
@@ -273,23 +286,30 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
-
+        if(currentKey=='q'&& startNode!=null && endNode!=null){
+            isBeingPressed=true;
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(currentKey=='q' && startNode!=null && endNode!=null){
-            int x = mouseEvent.getX()/cellWidth;
-            int y = mouseEvent.getY()/cellWidth;
-            Node n = board[x][y];
-            startNode.setNodeType(Constants.NODE_EMPTY);
-            startNode = n;
-            startNode.setNodeType(Constants.NODE_START);
-            this.clearAlgo();
+            redrawAlgo(mouseEvent);
 
-            this.setPathFindingAlgo(new Astar(),0);
-            this.startAlgo();
+            isBeingPressed=false;
         }
+    }
+    private void redrawAlgo(MouseEvent mouseEvent){
+        int x = mouseEvent.getX()/cellWidth;
+        int y = mouseEvent.getY()/cellWidth;
+        Node n = board[x][y];
+        startNode.setNodeType(Constants.NODE_EMPTY);
+        startNode = n;
+        startNode.setNodeType(Constants.NODE_START);
+        this.clearAlgo();
+
+        this.setPathFindingAlgo(new Astar(),0);
+        this.startAlgo();
     }
 
     @Override
@@ -305,5 +325,13 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
+    }
+
+    public RedrawMousleListener getRedrawMousleListener() {
+        return redrawMousleListener;
+    }
+
+    public void setRedrawMousleListener(RedrawMousleListener redrawMousleListener) {
+        this.redrawMousleListener = redrawMousleListener;
     }
 }

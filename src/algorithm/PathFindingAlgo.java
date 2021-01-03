@@ -82,7 +82,6 @@ abstract public class PathFindingAlgo implements Runnable, Observable {
 
     @Override
     public void notifyObservers() {
-        System.out.println(this.observers.size());
         for(Observer o : observers)
             o.update();
     }

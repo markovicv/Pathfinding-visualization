@@ -1,12 +1,13 @@
 package ui;
 
 import algorithm.*;
+import contract.RedrawMousleListener;
 import model.Constants;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class CommandView extends JPanel {
+public class CommandView extends JPanel implements RedrawMousleListener {
     private String[] algorithms = {"A*","Dijkstra","BFS","DFS"};
     private String[] speedOptions = {"slow","medium","fast"};
     private JComboBox algoList;
@@ -19,6 +20,7 @@ public class CommandView extends JPanel {
 
     public CommandView(MatrixView matrixView){
         this.visualization = matrixView;
+        this.visualization.setRedrawMousleListener(this);
         this.setLayout(new FlowLayout());
         this.algoList = new JComboBox(algorithms);
         this.speedList = new JComboBox(speedOptions);
@@ -26,6 +28,12 @@ public class CommandView extends JPanel {
         initListeners();
 
     }
+
+    @Override
+    public void changeScroll(String change) {
+        System.out.println(change);
+    }
+
     private void initView(){
         btnVisualize.setPreferredSize(new Dimension(120,25));
         btnClear.setPreferredSize(new Dimension(120,25));
