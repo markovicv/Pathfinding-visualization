@@ -16,8 +16,8 @@ public class Constants {
     public final static Color GREEN = new Color(131, 169, 92);
     public final static Color BLACK = new Color(0,0,0);
     public final static Color WHITE = new Color(255,255,255);
-    public final static Color LIGHT_GREY = new Color(104, 109, 118);
-    public final static Color GOLD = new Color(216, 146, 22);
+    public final static Color LIGHT_GREY = new Color(130, 89, 89);
+    public final static Color GOLD = new Color(255, 214, 107);
 
     public final static String NODE_START_ERROR = "Start node is not defined";
     public final static String NODE_END_ERROR = "End node is not defined";
