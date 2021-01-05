@@ -35,6 +35,7 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     private boolean isBeingPressed = false;
 
     public RedrawMousleListener redrawMousleListener;
+    MouseEvent currMousePosition;
 
 
     public MatrixView(){
@@ -129,14 +130,13 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
 
             if(currentKey == 's' && startNode==null && node.getNodeType().equals(Constants.NODE_EMPTY)){
-                redrawMousleListener.changeScroll("start");
+
                 startNode = node;
                 startNode.setNodeType(Constants.NODE_START);
                 repaint();
 
             }
             else if(currentKey == 'e' && endNode==null && node.getNodeType().equals(Constants.NODE_EMPTY)){
-                redrawMousleListener.changeScroll("end");
                 endNode = node;
                 endNode.setNodeType(Constants.NODE_END);
                 repaint();
@@ -167,7 +167,6 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
     }
 
     public void setPathFindingAlgo(PathFindingAlgo pathFindingAlgo,int pathfindingSpeed){
-//        System.out.println(pathFindingAlgo);
         this.pathFindingAlgo = pathFindingAlgo;
         this.pathFindingAlgo.addObserver(this);
         this.pathFindingAlgo.setBoard(board);
@@ -186,10 +185,10 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
+        this.redrawMousleListener.changeScroll(currMousePosition);
         if(mouseWheelEvent.getWheelRotation()<0 && cellWidth<MAX_NODE_WIDTH ){
-            int newSize = cellWidth+20;
+            int newSize = cellWidth+10;
             cellWidth = Math.min(newSize,MAX_NODE_WIDTH);
-
             updateView();
 
         }
@@ -324,7 +323,7 @@ public class MatrixView extends JPanel implements MouseWheelListener, ChangeList
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-
+        currMousePosition = mouseEvent;
     }
 
     public RedrawMousleListener getRedrawMousleListener() {

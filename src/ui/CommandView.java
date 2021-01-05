@@ -6,6 +6,7 @@ import model.Constants;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class CommandView extends JPanel implements RedrawMousleListener {
     private String[] algorithms = {"A*","Dijkstra","BFS","DFS"};
@@ -16,9 +17,11 @@ public class CommandView extends JPanel implements RedrawMousleListener {
     private JButton btnClear = new JButton("Clear");
     private JButton btnNewBoard = new JButton("new board");
     private MatrixView visualization;
+    private JScrollPane jScrollPane;
 
 
-    public CommandView(MatrixView matrixView){
+    public CommandView(MatrixView matrixView,JScrollPane jScrollPane){
+        this.jScrollPane =jScrollPane;
         this.visualization = matrixView;
         this.visualization.setRedrawMousleListener(this);
         this.setLayout(new FlowLayout());
@@ -30,8 +33,11 @@ public class CommandView extends JPanel implements RedrawMousleListener {
     }
 
     @Override
-    public void changeScroll(String change) {
-        System.out.println(change);
+    public void changeScroll(MouseEvent mouseEvent) {
+
+
+
+
     }
 
     private void initView(){

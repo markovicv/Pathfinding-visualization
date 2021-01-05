@@ -11,13 +11,13 @@ public class Constants {
     public final static String NODE_VALID = "VALID";
     public final static String NODE_NOT_VALID = "NOT_VALID";
     public final static String NODE_PATH = "NODE_PATH";
-    public final static Color LIGHT_BLUE = new Color(135,206,250);
-    public final static Color RED = new Color(255,0,0);
-    public final static Color GREEN = new Color(0,255,0);
+    public final static Color LIGHT_BLUE = new Color(202, 228, 219);
+    public final static Color RED = new Color(239, 79, 79);
+    public final static Color GREEN = new Color(131, 169, 92);
     public final static Color BLACK = new Color(0,0,0);
     public final static Color WHITE = new Color(255,255,255);
-    public final static Color LIGHT_GREY = new Color(160,160,160);
-    public final static Color GOLD = new Color(240,215,53);
+    public final static Color LIGHT_GREY = new Color(104, 109, 118);
+    public final static Color GOLD = new Color(216, 146, 22);
 
     public final static String NODE_START_ERROR = "Start node is not defined";
     public final static String NODE_END_ERROR = "End node is not defined";

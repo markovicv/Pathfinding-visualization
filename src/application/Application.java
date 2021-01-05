@@ -13,10 +13,12 @@ public class Application extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(Constants.WIDTH,Constants.HEIGHT);
         MatrixView mv = new MatrixView();
-        CommandView commandView = new CommandView(mv);
-
         final JScrollPane jScrollPane = new JScrollPane();
         jScrollPane.setViewportView(mv);
+        CommandView commandView = new CommandView(mv,jScrollPane);
+
+
+//        jScrollPane.getv
         commandView.setPreferredSize(new Dimension(Constants.WIDTH,60));
         this.add(jScrollPane,BorderLayout.CENTER);
         this.add(commandView,BorderLayout.SOUTH);
